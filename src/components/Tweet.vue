@@ -1,28 +1,16 @@
 <template>
     <div class="tweet">
-        <img :src="props.tweet.user.image" class="profile" alt="profile" />
+        <ProfileImage :src="props.tweet.user.image"/>
 
         <div class="body">
             <div class="top">
-                <span class="user">
-                    <span class="name">{{props.tweet.user.name}}</span>
-                    <span class="handle">{{props.tweet.user.handle}}</span>
-                </span>
-
-                <span class="timestamp">{{props.tweet.timestamp}}</span>
+               <User :name="props.tweet.user.name" :handle="props.tweet.user.handle" />
+                <Timestamp :timestamp="props.tweet.timestamp" />
             </div>
 
-            <p class="message">
-                {{props.tweet.message}}
-            </p>
+           <Message :message="props.tweet.message" />
 
-            <div class="actions">
-                <!-- Font Awesome icons -->
-                <i class="far fa-comment"></i>
-                <i class="fas fa-retweet"></i>
-                <i class="far fa-heart"></i>
-                <i class="fas fa-share"></i>
-            </div>
+            <Actions />
         </div>
 
         <i class="fas fa-ellipsis-h"></i>
@@ -36,11 +24,10 @@ a {
 </style>
 <script setup>
 import { defineProps } from "vue";
-const props = defineProps(["tweet"])
+import Timestamp from "./Timestamp.vue";
+import User from "./User.vue";
+import ProfileImage from "./ProfileImage.vue";
+import Message from "./Message.vue";
+import Actions from "./Actions.vue";
+const props = defineProps(["tweet"]);
 </script>
-
-/* name: String,
-    image: String,
-    userName: String,
-    time: String,
-    message: String */
